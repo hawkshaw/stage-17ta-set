@@ -1,0 +1,10 @@
+#ignore file
+Makefile
+Project.xcconfig
+TPJ2017_butai.xcodeproj
+addons.make
+config.make
+openFrameworks-Info.plist
+bin/TPJ2017_butaiDebug.app
+bin/data/MatCapZBrush
+bin/data/shaders
