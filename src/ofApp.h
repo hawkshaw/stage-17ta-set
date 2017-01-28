@@ -16,4 +16,6 @@ public:
     bool b_DrawGui;
     
     ofEasyCam cam;
+    
+    vector<ofImage> v_kabe;
 };

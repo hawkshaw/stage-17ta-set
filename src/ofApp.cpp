@@ -14,6 +14,8 @@
 #define BUTAI_D2 1000
 #define BUTAI_TRI 600
 
+#define KABE_TEX_W 360
+#define KABE_TEX_H 360
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -28,6 +30,13 @@ void ofApp::setup(){
     b_DrawGui=false;
     cam.setPosition(0, YUKA_D,BOX_H);
     cam.lookAt(ofVec3f(0,1,0), ofVec3f(0,0,1));
+    ofImage kabe1,kabe2,kabe3;
+    kabe1.load("1.png");
+    kabe2.load("2.png");
+    kabe3.load("3.png");
+    v_kabe.push_back(kabe1);
+    v_kabe.push_back(kabe2);
+    v_kabe.push_back(kabe3);
 }
 
 //--------------------------------------------------------------
@@ -47,7 +56,10 @@ void ofApp::draw(){
     
     ofScale(0.1, 0.1, 0.1);
 
+    //Rotate mean
+    //Turn the coordinate system clockwise
     ofSetColor(255);
+    
     //ofDrawGridPlane();
     ofDrawGrid();
     ofSetColor(0);
@@ -56,7 +68,56 @@ void ofApp::draw(){
     
     ofPushMatrix();
     ofRotateX(90);
-    ofDrawPlane(0, BOX_H/2, YUKA_W, BOX_H);
+    
+    ofDrawPlane(0, BOX_H/2, YUKA_W, BOX_H);//Draw Back Screen
+    ofSetColor(255);
+    for(int i = (-1-(int)(YUKA_W/2/KABE_TEX_W));i < (int)(YUKA_W/2/KABE_TEX_W);i++){
+        for(int j=0;j < (int)(BOX_H/KABE_TEX_H);j++){
+            if(abs(i+j)%2==0){
+                v_kabe[(abs((j)*(2)+i+j)/2)%3].draw(i*KABE_TEX_W, j*KABE_TEX_H,-1, KABE_TEX_W, KABE_TEX_H);
+            }
+        }
+    }
+    
+    ofPushStyle();
+    {
+        ofSetColor(255);
+        ofPushMatrix();
+        {
+            ofTranslate(-YUKA_W/2, 0);
+            ofRotateY(90);
+            ofSetColor(0);
+            ofDrawPlane((BUTAI_D1-BUTAI_TRI)/2, BOX_H/2, BUTAI_D1-BUTAI_TRI, BOX_H);//Draw Back Screen
+            ofSetColor(255);
+            for(int i = 0;i <= (int)((BUTAI_D1-BUTAI_TRI)/KABE_TEX_W);i++){
+                for(int j=0;j < (int)(BOX_H/KABE_TEX_H);j++){
+                    if(abs(i+j)%2==0){
+                        v_kabe[(abs((j)*(2)+i+j)/2)%3].draw((BUTAI_D1-BUTAI_TRI)-(i+1)*KABE_TEX_W, j*KABE_TEX_H,1, KABE_TEX_W, KABE_TEX_H);
+                    }
+                }
+            }
+        }
+        ofPopMatrix();
+    
+        ofPushMatrix();
+        {
+            ofTranslate(YUKA_W/2, 0);
+            ofRotateY(90);
+            ofSetColor(0);
+            ofDrawPlane((BUTAI_D1-BUTAI_TRI)/2, BOX_H/2, BUTAI_D1-BUTAI_TRI, BOX_H);//Draw Back Screen
+            ofSetColor(255);
+            for(int i = 0;i <= -3+(int)((BUTAI_D1-BUTAI_TRI)/KABE_TEX_W);i++){
+                for(int j=0;j < (int)(BOX_H/KABE_TEX_H);j++){
+                    if(abs(i+j+1)%2==0){
+                        v_kabe[(abs((j)*(2)+i+j)/2)%3].draw((BUTAI_D1-BUTAI_TRI)-(i+1)*KABE_TEX_W, j*KABE_TEX_H,-1, KABE_TEX_W, KABE_TEX_H);
+                    }
+                }
+            }
+        }
+        ofPopMatrix();
+    }
+    ofPopStyle();
+    
     ofPopMatrix();
     
     ofSetColor(255);

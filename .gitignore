@@ -8,3 +8,5 @@ openFrameworks-Info.plist
 bin/TPJ2017_butaiDebug.app
 bin/data/MatCapZBrush
 bin/data/shaders
+.DS_Store
+
