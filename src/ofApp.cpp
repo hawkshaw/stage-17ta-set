@@ -14,8 +14,8 @@
 #define BUTAI_D2 1000
 #define BUTAI_TRI 600
 
-#define KABE_TEX_W 360
-#define KABE_TEX_H 360
+#define KABE_TEX_W 440
+#define KABE_TEX_H 1000
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -31,9 +31,9 @@ void ofApp::setup(){
     cam.setPosition(0, YUKA_D,BOX_H);
     cam.lookAt(ofVec3f(0,1,0), ofVec3f(0,0,1));
     ofImage kabe1,kabe2,kabe3;
-    kabe1.load("1.png");
-    kabe2.load("2.png");
-    kabe3.load("3.png");
+    kabe1.load("5.png");
+    kabe2.load("5.png");
+    kabe3.load("5.png");
     v_kabe.push_back(kabe1);
     v_kabe.push_back(kabe2);
     v_kabe.push_back(kabe3);
